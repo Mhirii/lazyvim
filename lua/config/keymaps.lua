@@ -83,3 +83,6 @@ end, { desc = "Lazygit (Root Dir)" })
 
 -- lazy
 map("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Lazy" })
+
+-- lazy extras
+map("n", "<leader>lx", "<cmd>LazyExtras<cr>", { desc = "Lazy Extras" })
