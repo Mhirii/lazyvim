@@ -1,3 +1,60 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+local Util = require("lazyvim.util")
+local keymap = vim.keymap.set
+local opts = { silent = true }
+
+keymap({ "n", "v" }, "<leader>nd", "<cmd> NoiceDismiss <CR>", { desc = "Noice - Dismiss Notifications" })
+
+if Util.has("smart-splits.nvim") then
+  local splits = require("smart-splits")
+  keymap("n", "<C-h>", function()
+    splits.move_cursor_left()
+  end, { desc = "SmartSplits - Focus Left" })
+  keymap("n", "<C-j>", function()
+    splits.move_cursor_down()
+  end, { desc = "SmartSplits - Focus Down" })
+  keymap("n", "<C-k>", function()
+    splits.move_cursor_up()
+  end, { desc = "SmartSplits - Focus Up" })
+  keymap("n", "<C-l>", function()
+    splits.move_cursor_right()
+  end, { desc = "SmartSplits - Focus Right" })
+
+  keymap("n", "<A-left>", function()
+    splits.resize_left()
+  end, { desc = "SmartSplits - Resize Left" })
+  keymap("n", "<A-down>", function()
+    splits.resize_down()
+  end, { desc = "SmartSplits - Resize Down" })
+  keymap("n", "<A-up>", function()
+    splits.resize_up()
+  end, { desc = "SmartSplits - Resize Up" })
+  keymap("n", "<A-right>", function()
+    splits.resize_right()
+  end, { desc = "SmartSplits - Resize Right" })
+
+  keymap("n", "<A-h>", function()
+    splits.resize_left()
+  end, { desc = "SmartSplits - Resize Left" })
+  keymap("n", "<A-j>", function()
+    splits.resize_down()
+  end, { desc = "SmartSplits - Resize Down" })
+  keymap("n", "<A-k>", function()
+    splits.resize_up()
+  end, { desc = "SmartSplits - Resize Up" })
+  keymap("n", "<A-l>", function()
+    splits.resize_right()
+  end, { desc = "SmartSplits - Resize Right" })
+
+  keymap("n", "<leader><leader>h", function()
+    splits.swap_buf_left()
+  end, { desc = "SmartSplits - Swap Buffer Left" })
+  keymap("n", "<leader><leader>j", function()
+    splits.swap_buf_down()
+  end, { desc = "SmartSplits - Swap Buffer Down" })
+  keymap("n", "<leader><leader>k", function()
+    splits.swap_buf_up()
+  end, { desc = "SmartSplits - Swap Buffer Up" })
+  keymap("n", "<leader><leader>l", function()
+    splits.swap_buf_right()
+  end, { desc = "SmartSplits - Swap Buffer Right" })
+end
