@@ -60,7 +60,21 @@ if Util.has("smart-splits.nvim") then
   end, { desc = "SmartSplits - Swap Buffer Right" })
 end
 
-nomap("n", "<leader>l")
+--          ╭─────────────────────────────────────────────────────────╮
+--          │                         unbind                          │
+--          ╰─────────────────────────────────────────────────────────╯
+nomap("n", "<leader>l") -- lazy
+nomap("n", "<leader>fn") -- new file
+
+nomap("n", "<leader>ft") -- desc = "Terminal (Root Dir)"
+nomap("n", "<leader>fT") -- desc = "Terminal (cwd)"
+nomap("n", "<leader>fb") -- desc = "Buffers"
+nomap("n", "<leader>fc") -- desc = "Find Config File"
+nomap("n", "<leader>ff") -- desc = "Find Files (Root Dir)"
+nomap("n", "<leader>fF") -- { cwd = false }), desc = "Find Files (cwd)"
+nomap("n", "<leader>fg") -- desc = "Find Files (git-files)"
+nomap("n", "<leader>fr") -- desc = "Recent"
+nomap("n", "<leader>fR") -- { cwd = vim.uv.cwd() }), desc = "Recent (cwd)"
 
 -- lazygit
 map({ "n", "v" }, "<leader>lg", function()
