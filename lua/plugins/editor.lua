@@ -80,7 +80,7 @@ return {
       { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
       { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status" },
       -- find
-      { "<leader>sA", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
+      { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
       { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
       { "<leader>sF", LazyVim.telescope("files", { cwd = false }), desc = "Find Files (cwd)" }, --
@@ -177,6 +177,54 @@ return {
           },
         },
       }
+    end,
+  },
+
+  {
+    "folke/todo-comments.nvim",
+    cmd = { "TodoTrouble", "TodoTelescope" },
+    event = "LazyFile",
+    config = true,
+    -- stylua: ignore
+    keys = {
+      { "]t", function() require("todo-comments").jump_next() end, desc = "Next Todo Comment" },
+      { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous Todo Comment" },
+      { "<leader>xt", false},
+      { "<leader>lt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
+      { "<leader>xT", false},
+      { "<leader>lT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
+      { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+      { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
+    },
+  },
+
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      plugins = { spelling = true },
+      defaults = {
+        mode = { "n", "v" },
+        ["g"] = { name = "+goto" },
+        ["gs"] = { name = "+surround" },
+        ["z"] = { name = "+fold" },
+        ["]"] = { name = "+next" },
+        ["["] = { name = "+prev" },
+        ["<leader><tab>"] = { name = "+tabs" },
+        ["<leader>b"] = { name = "+buffer" },
+        ["<leader>c"] = { name = "+code" },
+        ["<leader>g"] = { name = "+git" },
+        ["<leader>gh"] = { name = "+hunks" },
+        ["<leader>q"] = { name = "+quit/session" },
+        ["<leader>s"] = { name = "+search" },
+        ["<leader>u"] = { name = "+ui" },
+        ["<leader>w"] = { name = "+windows" },
+      },
+    },
+    config = function(_, opts)
+      local wk = require("which-key")
+      wk.setup(opts)
+      wk.register(opts.defaults)
     end,
   },
 }
