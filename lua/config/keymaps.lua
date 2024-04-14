@@ -2,9 +2,7 @@ local Util = require("lazyvim.util")
 local map = vim.keymap.set
 local nomap = vim.keymap.del
 
---          ╭─────────────────────────────────────────────────────────╮
---          │                         unbind                          │
---          ╰─────────────────────────────────────────────────────────╯
+-- ── unbind ────────────────────────────────────────────────────
 nomap("n", "<leader>l") -- lazy
 nomap("n", "<leader>fn") -- new file
 
@@ -23,6 +21,7 @@ nomap("n", "<leader>xq")
 
 map({ "n", "v" }, "<leader>nd", "<cmd> NoiceDismiss <CR>", { desc = "Noice - Dismiss Notifications" })
 
+-- ── smart splits ──────────────────────────────────────────────
 if Util.has("smart-splits.nvim") then
   local splits = require("smart-splits")
   map("n", "<C-h>", function()
@@ -78,28 +77,29 @@ if Util.has("smart-splits.nvim") then
   end, { desc = "SmartSplits - Swap Buffer Right" })
 end
 
--- lazygit
+-- ── lazygit ───────────────────────────────────────────────────
 map({ "n", "v" }, "<leader>lg", function()
   LazyVim.lazygit({ cwd = LazyVim.root.git() })
 end, { desc = "Lazygit (Root Dir)" })
--- lazy
+-- ── lazy ──────────────────────────────────────────────────────
 map("n", "<leader>lp", "<cmd>Lazy<cr>", { desc = "Lazy" })
--- lazy extras
+-- ── lazy extras ───────────────────────────────────────────────
 map("n", "<leader>lx", "<cmd>LazyExtras<cr>", { desc = "Lazy Extras" })
 
--- floating terminal
+-- ── floating terminal ─────────────────────────────────────────
 local lazyterm = function()
   LazyVim.terminal(nil, { cwd = LazyVim.root() })
 end
 map("n", "<M-i>", lazyterm, { desc = "Terminal (Root Dir)" })
 
--- Terminal Mappings
+-- ── Terminal Mappings ─────────────────────────────────────────
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 map("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to Left Window" })
 map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to Lower Window" })
 map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
 map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
 map("t", "<M-i>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+
 -- ── close buffer ──────────────────────────────────────────────
 map("n", "<leader>x", "<leader>bd", { desc = "Close Buffer", remap = true })
 
