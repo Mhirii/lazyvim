@@ -60,3 +60,12 @@ if Util.has("smart-splits.nvim") then
   end, { desc = "SmartSplits - Swap Buffer Right" })
 end
 
+nomap("n", "<leader>l")
+
+-- lazygit
+map({ "n", "v" }, "<leader>lg", function()
+  LazyVim.lazygit({ cwd = LazyVim.root.git() })
+end, { desc = "Lazygit (Root Dir)" })
+
+-- lazy
+map("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Lazy" })
