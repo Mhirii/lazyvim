@@ -76,6 +76,15 @@ return {
       { "<leader>/", LazyVim.telescope("live_grep"), desc = "Grep (Root Dir)" },
       { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       { "<leader>f", LazyVim.telescope("files"), desc = "Find Files (Root Dir)" },
+
+      -- find
+      { "<leader>fb", false },
+      { "<leader>fc", false },
+      { "<leader>ff", false },
+      { "<leader>fF", false },
+      { "<leader>fg", false },
+      { "<leader>fr", false },
+      { "<leader>fR", false },
       -- git
       { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
       { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status" },
@@ -107,7 +116,7 @@ return {
       { "<leader>sg", "<cmd>Telescope git_files<cr>", desc = "Find Files (git-files)" }, --
       { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
       { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
-      { "<leader>sl", LazyVim.telescope("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (cwd)" }, --
+      { "<leader>sl", "<cmd>Telescope resume<cr>", desc = "Resume" }, --
       { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
       { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
       { "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" }, --
@@ -195,6 +204,31 @@ return {
       { "<leader>lT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
       { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
       { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
+    },
+  },
+
+  {
+    "echasnovski/mini.bufremove",
+
+    keys = {
+      {
+        "<leader>x",
+        function()
+          local bd = require("mini.bufremove").delete
+          if vim.bo.modified then
+            local choice = vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
+            if choice == 1 then -- Yes
+              vim.cmd.write()
+              bd(0)
+            elseif choice == 2 then -- No
+              bd(0, true)
+            end
+          else
+            bd(0)
+          end
+        end,
+        desc = "Delete Buffer",
+      },
     },
   },
 

@@ -8,13 +8,6 @@ nomap("n", "<leader>fn") -- new file
 
 nomap("n", "<leader>ft") -- desc = "Terminal (Root Dir)"
 nomap("n", "<leader>fT") -- desc = "Terminal (cwd)"
-nomap("n", "<leader>fb") -- desc = "Buffers"
-nomap("n", "<leader>fc") -- desc = "Find Config File"
-nomap("n", "<leader>ff") -- desc = "Find Files (Root Dir)"
-nomap("n", "<leader>fF") -- { cwd = false }), desc = "Find Files (cwd)"
-nomap("n", "<leader>fg") -- desc = "Find Files (git-files)"
-nomap("n", "<leader>fr") -- desc = "Recent"
-nomap("n", "<leader>fR") -- { cwd = vim.uv.cwd() }), desc = "Recent (cwd)"
 
 nomap("n", "<leader>xl")
 nomap("n", "<leader>xq")
@@ -99,7 +92,3 @@ map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to Lower Window" })
 map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
 map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
 map("t", "<M-i>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-
--- ── close buffer ──────────────────────────────────────────────
-map("n", "<leader>x", "<leader>bd", { desc = "Close Buffer", remap = true })
-
