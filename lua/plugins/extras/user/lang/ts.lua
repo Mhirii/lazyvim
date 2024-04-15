@@ -1,3 +1,13 @@
+local find_nearest_tsconfig = function()
+  local tsconfig = vim.fn.findfile("tsconfig.json", ".;")
+
+  if tsconfig ~= "" then
+    return tsconfig
+  end
+
+  return nil
+end
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -15,6 +25,38 @@ return {
     end,
   },
   { "pmizio/typescript-tools.nvim" },
+  {
+    "dmmulroy/tsc.nvim",
+    cmd = { "TSC" },
+    keys = {
+      {
+        "<leader>kc",
+        "<cmd>TSC<cr>",
+        desc = "Compile",
+      },
+    },
+    config = function()
+      require("tsc").setup({
+        auto_open_qflist = true,
+        spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+        auto_close_qflist = false,
+        auto_focus_qflist = false,
+        auto_start_watch_mode = false,
+        enable_progress_notifications = true,
+        hide_progress_notifications_from_history = true,
+        pretty_errors = true,
+        flags = {
+          noEmit = true,
+          project = function()
+            return find_nearest_tsconfig()
+          end,
+          watch = false,
+        },
+        use_trouble_qflist = true,
+        run_as_monorepo = false,
+      })
+    end,
+  },
   {
     "neovim/nvim-lspconfig",
     optional = true,
@@ -126,7 +168,7 @@ return {
               desc = "Sort Imports",
             },
             {
-              "<leader>km",
+              "<leader>ki",
               "<cmd>TSToolsAddMissingImports<cr>",
               desc = "Add Missing Imports",
             },
