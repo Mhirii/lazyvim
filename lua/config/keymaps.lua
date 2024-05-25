@@ -92,3 +92,6 @@ map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to Lower Window" })
 map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
 map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
 map("t", "<M-i>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+
+-- ── Toggle Context ────────────────────────────────────────────
+map("n", "<leader>ux", "<CMD>TSContextToggle<CR>", { desc = "Toggle Context" })
