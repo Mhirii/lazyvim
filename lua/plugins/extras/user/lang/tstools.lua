@@ -268,7 +268,8 @@ return {
       formatters_by_ft = {
         ["javascript"] = { "biome" },
         ["javascriptreact"] = { "biome" },
-        ["typescript"] = { "biome" },
+        ["typescript"] = { "prettier" },
+        ["json"] = { "prettier" },
         ["typescriptreact"] = { "biome" },
         ["vue"] = { "prettierd" },
         ["css"] = { "prettierd" },
