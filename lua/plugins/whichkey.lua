@@ -20,7 +20,7 @@ return {
       ["<leader>s"] = { name = "+search" },
       ["<leader>u"] = { name = "+ui" },
       ["<leader>w"] = { name = "+windows" },
-      ["<leader>x"] = { name = "+diagnostics/quickfix" },
+      -- ["<leader>x"] = { name = "+diagnostics/quickfix" },
     },
   },
   config = function(_, opts)

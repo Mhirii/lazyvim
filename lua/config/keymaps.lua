@@ -2,6 +2,8 @@ local map = vim.keymap.set
 
 local del = vim.keymap.del
 
+-- map("n", "<leader>x", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
+
 -- Resize window using <ctrl> arrow keys
 map("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
 map("n", "<A-j>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
@@ -29,6 +31,8 @@ map("n", "<leader>lx", "<cmd>LazyExtras<CR>", { desc = "LazyVim Changelog" })
 -- map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 del("n", "<leader>fn")
 
+del("n", "<leader>xl")
+del("n", "<leader>xq")
 
 -- lazygit
 map("n", "<leader>gg", function() LazyVim.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "Lazygit (Root Dir)" })
