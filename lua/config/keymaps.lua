@@ -1,97 +1,137 @@
-local Util = require("lazyvim.util")
 local map = vim.keymap.set
-local nomap = vim.keymap.del
+local del = vim.keymap.del
 
--- ── unbind ────────────────────────────────────────────────────
-nomap("n", "<leader>l") -- lazy
-nomap("n", "<leader>fn") -- new file
+-- Resize window using <ctrl> arrow keys
+map("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+map("n", "<A-j>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+map("n", "<A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+map("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
-nomap("n", "<leader>ft") -- desc = "Terminal (Root Dir)"
-nomap("n", "<leader>fT") -- desc = "Terminal (cwd)"
+-- Move Lines
+-- map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
+-- map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
+-- map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+-- map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+-- map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
+-- map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 
-nomap("n", "<leader>xl")
-nomap("n", "<leader>xq")
+-- lazy
+-- map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+del("n", "<leader>l")
 
-map({ "n", "v" }, "<leader>nd", "<cmd> NoiceDismiss <CR>", { desc = "Noice - Dismiss Notifications" })
+-- new file
+-- map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+del("n", "<leader>fn")
 
--- ── smart splits ──────────────────────────────────────────────
-if Util.has("smart-splits.nvim") then
-  local splits = require("smart-splits")
-  map("n", "<C-h>", function()
-    splits.move_cursor_left()
-  end, { desc = "SmartSplits - Focus Left" })
-  map("n", "<C-j>", function()
-    splits.move_cursor_down()
-  end, { desc = "SmartSplits - Focus Down" })
-  map("n", "<C-k>", function()
-    splits.move_cursor_up()
-  end, { desc = "SmartSplits - Focus Up" })
-  map("n", "<C-l>", function()
-    splits.move_cursor_right()
-  end, { desc = "SmartSplits - Focus Right" })
+-- stylua: ignore start
 
-  map("n", "<A-left>", function()
-    splits.resize_left()
-  end, { desc = "SmartSplits - Resize Left" })
-  map("n", "<A-down>", function()
-    splits.resize_down()
-  end, { desc = "SmartSplits - Resize Down" })
-  map("n", "<A-up>", function()
-    splits.resize_up()
-  end, { desc = "SmartSplits - Resize Up" })
-  map("n", "<A-right>", function()
-    splits.resize_right()
-  end, { desc = "SmartSplits - Resize Right" })
+-- lazygit
+map("n", "<leader>gg", function() LazyVim.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "Lazygit (Root Dir)" })
+map("n", "<leader>gG", function() LazyVim.lazygit() end, { desc = "Lazygit (cwd)" })
+map("n", "<leader>gb", LazyVim.lazygit.blame_line, { desc = "Git Blame Line" })
+map("n", "<leader>gB", LazyVim.lazygit.browse, { desc = "Git Browse" })
 
-  map("n", "<A-h>", function()
-    splits.resize_left()
-  end, { desc = "SmartSplits - Resize Left" })
-  map("n", "<A-j>", function()
-    splits.resize_down()
-  end, { desc = "SmartSplits - Resize Down" })
-  map("n", "<A-k>", function()
-    splits.resize_up()
-  end, { desc = "SmartSplits - Resize Up" })
-  map("n", "<A-l>", function()
-    splits.resize_right()
-  end, { desc = "SmartSplits - Resize Right" })
+map("n", "<leader>gf", function()
+  local git_path = vim.api.nvim_buf_get_name(0)
+  LazyVim.lazygit({args = { "-f", vim.trim(git_path) }})
+end, { desc = "Lazygit Current File History" })
 
-  map("n", "<leader><leader>h", function()
-    splits.swap_buf_left()
-  end, { desc = "SmartSplits - Swap Buffer Left" })
-  map("n", "<leader><leader>j", function()
-    splits.swap_buf_down()
-  end, { desc = "SmartSplits - Swap Buffer Down" })
-  map("n", "<leader><leader>k", function()
-    splits.swap_buf_up()
-  end, { desc = "SmartSplits - Swap Buffer Up" })
-  map("n", "<leader><leader>l", function()
-    splits.swap_buf_right()
-  end, { desc = "SmartSplits - Swap Buffer Right" })
-end
+map("n", "<leader>gl", function()
+  LazyVim.lazygit({ args = { "log" }, cwd = LazyVim.root.git() })
+end, { desc = "Lazygit Log" })
+map("n", "<leader>gL", function()
+  LazyVim.lazygit({ args = { "log" } })
+end, { desc = "Lazygit Log (cwd)" })
 
--- ── lazygit ───────────────────────────────────────────────────
-map({ "n", "v" }, "<leader>lg", function()
-  LazyVim.lazygit({ cwd = LazyVim.root.git() })
-end, { desc = "Lazygit (Root Dir)" })
--- ── lazy ──────────────────────────────────────────────────────
-map("n", "<leader>lp", "<cmd>Lazy<cr>", { desc = "Lazy" })
--- ── lazy extras ───────────────────────────────────────────────
-map("n", "<leader>lx", "<cmd>LazyExtras<cr>", { desc = "Lazy Extras" })
+-- quit
+-- map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+del("n", "<leader>qq")
 
--- ── floating terminal ─────────────────────────────────────────
-local lazyterm = function()
-  LazyVim.terminal(nil, { cwd = LazyVim.root() })
-end
-map("n", "<M-i>", lazyterm, { desc = "Terminal (Root Dir)" })
+-- highlights under cursor
+map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
+map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
--- ── Terminal Mappings ─────────────────────────────────────────
+-- LazyVim Changelog
+map("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "LazyVim Changelog" })
+
+-- floating terminal
+local lazyterm = function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end
+map("n", "<leader>ft", lazyterm, { desc = "Terminal (Root Dir)" })
+map("n", "<leader>fT", function() LazyVim.terminal() end, { desc = "Terminal (cwd)" })
+map("n", "<c-/>", lazyterm, { desc = "Terminal (Root Dir)" })
+map("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
+map("n", "<A-i>", function() LazyVim.terminal() end, { desc = "Terminal (cwd)" })
+
+-- Terminal Mappings
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 map("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to Left Window" })
 map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to Lower Window" })
 map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
 map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
-map("t", "<M-i>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+map("t", "<A-i>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 
--- ── Toggle Context ────────────────────────────────────────────
-map("n", "<leader>ux", "<CMD>TSContextToggle<CR>", { desc = "Toggle Context" })
+-- windows
+map("n", "<leader>ww", "<C-W>p", { desc = "Other Window", remap = true })
+map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+map("n", "<leader>w-", "<C-W>s", { desc = "Split Window Below", remap = true })
+map("n", "<leader>w|", "<C-W>v", { desc = "Split Window Right", remap = true })
+map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
+map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
+map("n", "<leader>wm", function() LazyVim.toggle.maximize() end, { desc = "Maximize Toggle" })
+
+-- tabs
+map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
+map("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })
+map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
+map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+
+-- skipped
+
+-- map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
+-- map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
+-- map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
+-- map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
+--
+
+--- -- formatting
+-- map({ "n", "v" }, "<leader>cf", function()
+--   LazyVim.format({ force = true })
+-- end, { desc = "Format" })
+
+-- -- diagnostic
+-- local diagnostic_goto = function(next, severity)
+--   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+--   severity = severity and vim.diagnostic.severity[severity] or nil
+--   return function()
+--     go({ severity = severity })
+--   end
+-- end
+-- map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+-- map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
+-- map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
+-- map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+-- map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+-- map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+-- map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+--
+
+-- toggle options
+-- map("n", "<leader>uf", function() LazyVim.format.toggle() end, { desc = "Toggle Auto Format (Global)" })
+-- map("n", "<leader>uF", function() LazyVim.format.toggle(true) end, { desc = "Toggle Auto Format (Buffer)" })
+-- map("n", "<leader>us", function() LazyVim.toggle("spell") end, { desc = "Toggle Spelling" })
+-- map("n", "<leader>uw", function() LazyVim.toggle("wrap") end, { desc = "Toggle Word Wrap" })
+-- map("n", "<leader>uL", function() LazyVim.toggle("relativenumber") end, { desc = "Toggle Relative Line Numbers" })
+-- map("n", "<leader>ul", function() LazyVim.toggle.number() end, { desc = "Toggle Line Numbers" })
+-- map("n", "<leader>ud", function() LazyVim.toggle.diagnostics() end, { desc = "Toggle Diagnostics" })
+-- local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
+-- map("n", "<leader>uc", function() LazyVim.toggle("conceallevel", false, {0, conceallevel}) end, { desc = "Toggle Conceal" })
+-- if vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint then
+--   map( "n", "<leader>uh", function() LazyVim.toggle.inlay_hints() end, { desc = "Toggle Inlay Hints" })
+-- end
+-- map("n", "<leader>uT", function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end, { desc = "Toggle Treesitter Highlight" })
+-- map("n", "<leader>ub", function() LazyVim.toggle("background", false, {"light", "dark"}) end, { desc = "Toggle Background" })
