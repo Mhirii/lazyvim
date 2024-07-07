@@ -1,14 +1,61 @@
 local map = vim.keymap.set
-
 local del = vim.keymap.del
 
--- map("n", "<leader>x", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
+local Util = require("lazyvim.util")
+if Util.has("smart-splits.nvim") then
+  local splits = require("smart-splits")
+  map("n", "<C-h>", function()
+    splits.move_cursor_left()
+  end, { desc = "SmartSplits - Focus Left" })
+  map("n", "<C-j>", function()
+    splits.move_cursor_down()
+  end, { desc = "SmartSplits - Focus Down" })
+  map("n", "<C-k>", function()
+    splits.move_cursor_up()
+  end, { desc = "SmartSplits - Focus Up" })
+  map("n", "<C-l>", function()
+    splits.move_cursor_right()
+  end, { desc = "SmartSplits - Focus Right" })
 
--- Resize window using <ctrl> arrow keys
-map("n", "<A-k>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-map("n", "<A-j>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-map("n", "<A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-map("n", "<A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+  map("n", "<A-left>", function()
+    splits.resize_left()
+  end, { desc = "SmartSplits - Resize Left" })
+  map("n", "<A-down>", function()
+    splits.resize_down()
+  end, { desc = "SmartSplits - Resize Down" })
+  map("n", "<A-up>", function()
+    splits.resize_up()
+  end, { desc = "SmartSplits - Resize Up" })
+  map("n", "<A-right>", function()
+    splits.resize_right()
+  end, { desc = "SmartSplits - Resize Right" })
+
+  map("n", "<A-h>", function()
+    splits.resize_left()
+  end, { desc = "SmartSplits - Resize Left" })
+  map("n", "<A-j>", function()
+    splits.resize_down()
+  end, { desc = "SmartSplits - Resize Down" })
+  map("n", "<A-k>", function()
+    splits.resize_up()
+  end, { desc = "SmartSplits - Resize Up" })
+  map("n", "<A-l>", function()
+    splits.resize_right()
+  end, { desc = "SmartSplits - Resize Right" })
+
+  map("n", "<leader><leader>h", function()
+    splits.swap_buf_left()
+  end, { desc = "SmartSplits - Swap Buffer Left" })
+  map("n", "<leader><leader>j", function()
+    splits.swap_buf_down()
+  end, { desc = "SmartSplits - Swap Buffer Down" })
+  map("n", "<leader><leader>k", function()
+    splits.swap_buf_up()
+  end, { desc = "SmartSplits - Swap Buffer Up" })
+  map("n", "<leader><leader>l", function()
+    splits.swap_buf_right()
+  end, { desc = "SmartSplits - Swap Buffer Right" })
+end
 
 -- Move Lines
 del("n", "<A-j>")
