@@ -1,4 +1,5 @@
 local map = vim.keymap.set
+
 local del = vim.keymap.del
 
 -- Resize window using <ctrl> arrow keys
@@ -22,6 +23,7 @@ map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 del("n", "<leader>l")
 map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("n", "<leader>ll", function() LazyVim.news.changelog() end, { desc = "LazyVim Changelog" })
+map("n", "<leader>lx", "<cmd>LazyExtras<CR>", { desc = "LazyVim Changelog" })
 
 -- new file
 -- map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
@@ -33,6 +35,7 @@ map("n", "<leader>gg", function() LazyVim.lazygit( { cwd = LazyVim.root.git() })
 map("n", "<leader>gG", function() LazyVim.lazygit() end, { desc = "Lazygit (cwd)" })
 map("n", "<leader>gb", LazyVim.lazygit.blame_line, { desc = "Git Blame Line" })
 map("n", "<leader>gB", LazyVim.lazygit.browse, { desc = "Git Browse" })
+map("n", "<leader>lg", function() LazyVim.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "Lazygit (Root Dir)" })
 
 map("n", "<leader>gf", function()
   local git_path = vim.api.nvim_buf_get_name(0)
@@ -56,8 +59,8 @@ map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
 -- floating terminal
 local lazyterm = function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end
-map("n", "<leader>ft", lazyterm, { desc = "Terminal (Root Dir)" })
-map("n", "<leader>fT", function() LazyVim.terminal() end, { desc = "Terminal (cwd)" })
+del("n","<leader>ft")
+del("n","<leader>fT")
 map("n", "<c-/>", lazyterm, { desc = "Terminal (Root Dir)" })
 map("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
 map("n", "<A-i>", function() LazyVim.terminal() end, { desc = "Terminal (cwd)" })
@@ -89,7 +92,3 @@ map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-
--- liberate f
-del("n", "<leader>fe")
-del("n", "<leader>fE")
