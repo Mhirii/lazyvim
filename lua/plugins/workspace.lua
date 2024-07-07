@@ -1,40 +1,5 @@
 return {
   {
-    "stevearc/resession.nvim",
-    config = function()
-      local resession = require("resession")
-      resession.setup({
-        autosave = {
-          enabled = true,
-          interval = 60,
-          notify = true,
-        },
-      })
-
-      -- Automatically save sessions on by working directory on exit
-      vim.api.nvim_create_autocmd("VimLeavePre", {
-        callback = function()
-          resession.save(vim.fn.getcwd(), { notify = true })
-        end,
-      })
-
-
-
-          -- stylua: ignore start
-      local map = vim.keymap.set
-        map("n", "<Leader>Sl", function() require("resession").load "last" end,                           { desc = "Load last session" })
-        map("n", "<Leader>Ss", function() require("resession").save() end,                                        { desc = "Save this session" })
-        map("n", "<Leader>SS", function() require("resession").save(vim.fn.getcwd(), { dir = "dirsession" }) end, { desc = "Save this dirsession" })
-        map("n", "<Leader>Sd", function() require("resession").delete() end,                                      { desc = "Delete a session" })
-        map("n", "<Leader>SD", function() require("resession").delete(nil, { dir = "dirsession" }) end,           { desc = "Delete a dirsession" })
-        map("n", "<Leader>Sf", function() require("resession").load() end,                                        { desc = "Load a session"})
-        map("n", "<Leader>SF", function() require("resession").load(nil, { dir = "dirsession" }) end,             { desc = "Load a dirsession"  })
-        map("n", "<Leader>S.", function() require("resession").load(vim.fn.getcwd(), { dir = "dirsession" }) end, { desc = "Load current dirsession" } )
-      -- stylua: ignore end
-    end,
-  },
-
-  {
     "natecraddock/workspaces.nvim",
     lazy = true,
     event = "VeryLazy",
@@ -81,7 +46,7 @@ return {
           rename = {},
           open_pre = {},
           open = function()
-            require("resession").load(vim.fn.getcwd(), { dir = "dirsession" })
+            require("persistence").load()
           end,
         },
       })
@@ -89,7 +54,7 @@ return {
       telescope.load_extension("workspaces")
     end,
     keys = {
-      { "<leader>w", "<CMD>Telescope workspaces<CR>", mode = { "n" }, desc = "Workspaces - List" },
+      { "<leader>w", "<CMD>WorkspacesOpen<CR>", mode = { "n" }, desc = "Workspaces - List" },
     },
   },
 }

@@ -14,34 +14,34 @@ return {
       evaluate_single = true,
       header = [[
 
-	                                                                      
-	                                                                      
-	                                                                      
-	                                                                      
-	                                                                      
-	                                                                      
-	                                                                      
-	                                                                    
-	      ████ ██████           █████      ██                     
-	     ███████████             █████                             
-	     █████████ ███████████████████ ███   ███████████   
-	    █████████  ███    █████████████ █████ ██████████████   
-	   █████████ ██████████ █████████ █████ █████ ████ █████   
-	 ███████████ ███    ███ █████████ █████ █████ ████ █████  
-	██████  █████████████████████ ████ █████ █████ ████ ██████ 
-	                                                                      
-	                                                                      
-	                                                                      
-	                                                                      
-	                                                                      
-	                                                                      
+	
+	
+	
+	
+	
+	
+	
+	                                              
+	      ████ ██████           █████      ██
+	     ███████████             █████ 
+	     █████████ ███████████████████ ███   ███████████
+	    █████████  ███    █████████████ █████ ██████████████
+	   █████████ ██████████ █████████ █████ █████ ████ █████
+	 ███████████ ███    ███ █████████ █████ █████ ████ █████
+	██████  █████████████████████ ████ █████ █████ ████ ██████
+	
+	
+	
+	
+	
+	
 ]],
       items = {
-        new_section("Find file",       "Telescope find_files",                                   "Telescope"),
-        new_section("Old files",       "Telescope oldfiles",                                     "Telescope"),
-        new_section("Config",          "lua require('lazyvim.util').telescope.config_files()()", "Telescope"),
-        new_section("Session restore", "lua require('resession').load('last')",                  "Session"),
-        new_section("workspaces",      "WorkspacesOpen",                                         "Session"),
+        new_section("Find file", "Telescope find_files", "Telescope"),
+        new_section("Old files", "Telescope oldfiles", "Telescope"),
+        new_section("Config", "lua require('lazyvim.util').telescope.config_files()()", "Telescope"),
+        new_section("Session restore", "lua require('persistence').load()", "Session"),
+        new_section("workspaces", "WorkspacesOpen", "Session"),
       },
       content_hooks = {
         starter.gen_hook.adding_bullet(pad .. "░ ", false),
