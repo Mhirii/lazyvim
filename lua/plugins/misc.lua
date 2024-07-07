@@ -1,28 +1,22 @@
 return {
   {
     "nguyenvukhang/nvim-toggler",
-    event = { "InsertEnter" },
+    config = function()
+      require("nvim-toggler").setup({
+        inverses = {
+          ["disable"] = "enable",
+        },
+      })
+    end,
     keys = {
-
-      n = {
-        ["<Leader>i"] = {
-          function()
-            require("nvim-toggler").toggle()
-          end,
-          desc = "Toggle CursorWord",
-        },
+      {
+        "<leader>i",
+        mode = { "n", "v" },
+        function()
+          require("nvim-toggler").toggle()
+        end,
+        desc = "Toggler",
       },
-      v = {
-        ["<Leader>i"] = {
-          function()
-            require("nvim-toggler").toggle()
-          end,
-          desc = "Toggle CursorWord",
-        },
-      },
-    },
-    opts = {
-      remove_default_keybinds = true,
     },
   },
   {
@@ -35,6 +29,50 @@ return {
         hide_relativenumbers = true, -- Enable turning off 'relativenumber' for the window while peeking
         number_only = false, -- Peek only when the command is only a number instead of when it starts with a number
         centered_peeking = true, -- Peeked line will be centered relative to window
+      })
+    end,
+  },
+
+  {
+    "norcalli/nvim-colorizer.lua",
+    event = "VeryLazy",
+    keys = {
+      { "<leader>uz", ":ColorizerToggle<cr>", { desc = "Toggle Colorizer" } },
+    },
+    config = function()
+      local default_options = {
+        RGB = true, -- #RGB hex codes
+        RRGGBB = true, -- #RRGGBB hex codes
+        names = false, -- "Name" codes like Blue
+        RRGGBBAA = false, -- #RRGGBBAA hex codes
+        rgb_fn = true, -- CSS rgb() and rgba() functions
+        hsl_fn = false, -- CSS hsl() and hsla() functions
+        css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+      }
+      local css_options = {
+        RGB = true,
+        RRGGBB = true,
+        names = true,
+        RRGGBBAA = true,
+        rgb_fn = true,
+        hsl_fn = true,
+        css = true,
+        css_fn = true,
+      }
+      require("colorizer").setup({
+        "*",
+        lua = default_options,
+        hypr = default_options,
+        rust = default_options,
+        conf = default_options,
+
+        vue = css_options,
+        tsx = css_options,
+        css = css_options,
+        json = css_options,
+        yaml = css_options,
+        toml = css_options,
       })
     end,
   },
