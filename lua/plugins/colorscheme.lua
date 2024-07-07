@@ -67,30 +67,35 @@ local highlights = function(hl, c)
 end
 
 return {
-  "folke/tokyonight.nvim",
-  lazy = true,
-  opts = { style = "moon" },
-  config = function()
-    local transparency = function()
-      return not vim.g.neovide
-    end
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+    opts = { style = "moon" },
+    config = function()
+      local transparency = function()
+        return not vim.g.neovide
+      end
 
-    require("tokyonight").setup({
-      on_highlights = highlights,
-      transparent = transparency(),
-      hide_inactive_statusline = true,
-      dim_inactive = false,
-      lualine_bold = true,
-      style = "night",
-      styles = {
+      require("tokyonight").setup({
+        on_highlights = highlights,
+        transparent = transparency(),
+        hide_inactive_statusline = true,
+        dim_inactive = false,
+        lualine_bold = true,
+        style = "night",
+        styles = {
 
-        sidebars = "transparent",
-        floats = "dark",
-        comments = { italic = false },
-        keywords = { italic = false, bold = true },
-        functions = { italic = false, bold = true },
-        variables = { italic = false, bold = false },
-      },
-    })
-  end,
+          sidebars = "transparent",
+          floats = "dark",
+          comments = { italic = false },
+          keywords = { italic = false, bold = true },
+          functions = { italic = false, bold = true },
+          variables = { italic = false, bold = false },
+        },
+      })
+    end,
+  },
+  {
+    "yashguptaz/calvera-dark.nvim",
+  },
 }

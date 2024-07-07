@@ -73,9 +73,9 @@ return {
         "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
         desc = "Switch Buffer",
       },
-      { "<leader>/", LazyVim.telescope("live_grep"), desc = "Grep (Root Dir)" },
+      { "<leader>/", "<cmd>Telescope live_grep<CR>", desc = "Grep (Root Dir)" },
       { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-      { "<leader>f", LazyVim.telescope("files"), desc = "Find Files (Root Dir)" },
+      { "<leader>f", "<cmd>Telescope find_files<CR>", desc = "Find Files (Root Dir)" },
 
       -- find
       { "<leader>fb", false },
@@ -92,7 +92,7 @@ return {
       { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
       { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
-      { "<leader>sF", LazyVim.telescope("files", { cwd = false }), desc = "Find Files (cwd)" }, --
+      { "<leader>sF", LazyVim.telescope("files", { cwd = false, show_untracked = true }), desc = "Find Files (cwd)" }, --
       { "<leader>sG", LazyVim.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
       { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
       { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
