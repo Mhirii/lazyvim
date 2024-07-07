@@ -1,6 +1,7 @@
 return {
   {
     "nguyenvukhang/nvim-toggler",
+    event = "VeryLazy",
     config = function()
       require("nvim-toggler").setup({
         inverses = {
@@ -8,16 +9,6 @@ return {
         },
       })
     end,
-    keys = {
-      {
-        "<leader>i",
-        mode = { "n", "v" },
-        function()
-          require("nvim-toggler").toggle()
-        end,
-        desc = "Toggler",
-      },
-    },
   },
   {
     "nacro90/numb.nvim",
