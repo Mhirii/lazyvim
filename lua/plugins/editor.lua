@@ -1,3 +1,4 @@
+local telescope = require("telescope.builtin")
 return {
 
   {
@@ -92,8 +93,20 @@ return {
       { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
       { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
-      { "<leader>sF", LazyVim.telescope("files", { cwd = false, show_untracked = true }), desc = "Find Files (cwd)" }, --
-      { "<leader>sG", LazyVim.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
+      {
+        "<leader>sF",
+        function()
+          telescope.find_files({ cwd = false, show_untracked = true })
+        end,
+        desc = "Find Files (cwd)",
+      }, --
+      {
+        "<leader>sG",
+        function()
+          telescope.live_grep("live_grep", { cwd = false })
+        end,
+        desc = "Grep (cwd)",
+      },
       { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
       { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
       { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
@@ -106,13 +119,31 @@ return {
         end,
         desc = "Goto Symbol (Workspace)",
       },
-      { "<leader>sW", LazyVim.telescope("grep_string", { cwd = false }), mode = "v", desc = "Selection (cwd)" },
-      { "<leader>sW", LazyVim.telescope("grep_string", { cwd = false, word_match = "-w" }), desc = "Word (cwd)" },
+      {
+        "<leader>sW",
+        function()
+          telescope.grep_string({ cwd = false })
+        end,
+        mode = "v",
+        desc = "Selection (cwd)",
+      },
+      {
+        "<leader>sW",
+        function()
+          telescope.grep_string({ cwd = false, word_match = "-w" })
+        end,
+        desc = "Word (cwd)",
+      },
       { "<leader>sb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" }, --
       { "<leader>sB", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Seach in Buffer" },
-      { "<leader>sc", LazyVim.telescope.config_files(), desc = "Find Config File" }, --
       { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
-      { "<leader>sf", LazyVim.telescope("files"), desc = "Find Files (Root Dir)" }, --
+      {
+        "<leader>sf",
+        function()
+          telescope.find_files()
+        end,
+        desc = "Find Files (Root Dir)",
+      }, --
       { "<leader>sg", "<cmd>Telescope git_files<cr>", desc = "Find Files (git-files)" }, --
       { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
       { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
@@ -127,9 +158,22 @@ return {
         end,
         desc = "Goto Symbol",
       },
-      { "<leader>sw", LazyVim.telescope("grep_string"), mode = "v", desc = "Selection (Root Dir)" },
-      { "<leader>sw", LazyVim.telescope("grep_string", { word_match = "-w" }), desc = "Word (Root Dir)" },
-      { "<leader>uC", LazyVim.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with Preview" },
+      {
+        "<leader>sw",
+        function()
+          telescope.grep_string()
+        end,
+        mode = "v",
+        desc = "Selection (Root Dir)",
+      },
+      {
+        "<leader>sw",
+        function()
+          telescope.grep_string({ word_match = "-w" })
+        end,
+        desc = "Word (Root Dir)",
+      },
+      { "<leader>uC", "Telescope colorscheme", desc = "Colorscheme with Preview" },
       -- { '<leader>st"', "<cmd>Telescope registers<cr>", desc = "Registers" },
     },
     opts = function()
@@ -144,12 +188,12 @@ return {
       local find_files_no_ignore = function()
         local action_state = require("telescope.actions.state")
         local line = action_state.get_current_line()
-        LazyVim.telescope("find_files", { no_ignore = true, default_text = line })()
+        telescope("find_files", { no_ignore = true, default_text = line })()
       end
       local find_files_with_hidden = function()
         local action_state = require("telescope.actions.state")
         local line = action_state.get_current_line()
-        LazyVim.telescope("find_files", { hidden = true, default_text = line })()
+        telescope("find_files", { hidden = true, default_text = line })()
       end
 
       return {
