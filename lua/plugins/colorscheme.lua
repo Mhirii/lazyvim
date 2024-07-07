@@ -25,9 +25,10 @@ return {
       })
     end,
   },
-  { "bluz71/vim-nightfly-colors" },
+  { "bluz71/vim-nightfly-colors", enabled = false },
   {
     "oxfist/night-owl.nvim",
+    enabled = false,
     -- lazy = false,
     -- priority = 1000,
     config = function()

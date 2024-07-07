@@ -11,7 +11,7 @@ return {
     },
     { "<leader>/", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
     { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-    { "<leader><space>", LazyVim.pick("auto"), desc = "Find Files (Root Dir)" },
+    { "<leader><space>", false }, -- LazyVim.pick("auto"), desc = "Find Files (Root Dir)" },
     -- find
     { "<leader>fb", false },
     { "<leader>fc", false },
