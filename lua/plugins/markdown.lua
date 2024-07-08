@@ -115,7 +115,7 @@ return {
       highlights = {
         heading = {
           -- Background of heading line
-          backgrounds = { "DiffAdd", "DiffChange", "DiffDelete" },
+          backgrounds = { "diffNewFile", "diffFile", "diffIndexLine", "Keyword", "healthSuccess", "diffAdded", },
           -- Foreground of heading character only
           foregrounds = {
             "markdownH1",
