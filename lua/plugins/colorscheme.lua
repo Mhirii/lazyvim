@@ -1,3 +1,4 @@
+local themes = require("user.colors")
 return {
   {
     "folke/tokyonight.nvim",
@@ -8,7 +9,7 @@ return {
       -- end
 
       require("tokyonight").setup({
-        transparent = false,
+        transparent = true,
         hide_inactive_statusline = true,
         dim_inactive = false,
         lualine_bold = true,
@@ -45,4 +46,44 @@ return {
       -- vim.cmd.colorscheme("night-owl")
     end,
   },
+  {
+    "catppuccin/nvim",
+    lazy = false,
+    name = "catppuccin",
+    config = function()
+      require("catppuccin").setup {
+        transparent_background = true,
+        color_overrides = {
+          mocha = themes.nero2(),
+        },
+
+        highlight_overrides = {
+          all = function(colors)
+            return {
+              ["@function.method"] = { fg = colors.sapphire, style = { "bold" } },
+              ["@function.builtin"] = { fg = colors.blue, style = { "bold" } },
+              ["Function"] = { fg = colors.blue },
+              ["@parameter"] = { fg = colors.peach },
+              ["@keyword"] = { fg = colors.red, style = { "bold" } },
+              ["NeoTreeNormal"] = { bg = colors.base },
+              ["NeoTreeVertSplit"] = { fg = colors.base, bg = colors.base },
+              ["NeoTree"] = { fg = colors.base, bg = colors.base },
+              ["LazySpecial"] = { fg = colors.mauve },
+
+            }
+          end,
+        },
+      }
+    end,
+    opts = function(_, opts)
+      opts.transparent_background = true
+    end,
+  },
+
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin-mocha",
+    },
+  }
 }
