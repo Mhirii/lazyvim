@@ -38,6 +38,7 @@ return {
     { "<leader>ao", "<CMD>CopilotChatOptimize<CR>", desc = "Optimize (CopilotChat)",       mode = { "n", "v" } },
     { "<leader>aD", "<CMD>CopilotChatDocs<CR>",     desc = "Doc (CopilotChat)",            mode = { "n", "v" } },
     { "<leader>at", "<CMD>CopilotChatTests<CR>",    desc = "Generate Tests (CopilotChat)", mode = { "n", "v" } },
+    { "<A-c>",      "<CMD>CopilotChatToggle<CR>",   desc = "Toggle (CopilotChat)",         mode = { "n", "v" } },
   },
   config = function(_, opts)
     local chat = require("CopilotChat")
@@ -50,6 +51,42 @@ return {
         vim.opt_local.number = false
       end,
     })
+
+    opts.mappings = {
+      complete = {
+        detail = 'Use @<Tab> or /<Tab> for options.',
+        insert = '<Tab>',
+      },
+      close = {
+        normal = 'q',
+        insert = '<C-c>'
+      },
+      reset = {
+        normal = '<C-c>',
+        insert = ''
+      },
+      submit_prompt = {
+        normal = '<CR>',
+        insert = '<C-m>'
+      },
+      accept_diff = {
+        normal = '<C-y>',
+        insert = '<C-y>'
+      },
+      yank_diff = {
+        normal = 'gy',
+      },
+      show_diff = {
+        normal = 'gd'
+      },
+      show_system_prompt = {
+        normal = 'gp'
+      },
+      show_user_selection = {
+        normal = 'gs'
+      },
+    }
+
 
     chat.setup(opts)
   end,
