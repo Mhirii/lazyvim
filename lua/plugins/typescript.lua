@@ -101,12 +101,12 @@ return {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "css-lsp", "eslint-lsp", "html-lsp", "biome" })
+      vim.list_extend(opts.ensure_installed, { "css-lsp", "html-lsp", "biome" })
     end,
   },
   {
     "mfussenegger/nvim-lint",
-    enabled = false,
+    enabled = true,
     opts = function(_, opts)
       if has_eslint() then
         opts.linters_by_ft = {
@@ -121,17 +121,22 @@ return {
 
   {
     "stevearc/conform.nvim",
-    enabled = false,
     opts = function(_, opts)
-      if has_prettier() then
-        opts.formatters_by_ft = {
-          javascript = { "prettier" },
-          javascriptreact = { "prettier" },
-          typescript = { "prettier" },
-          typescriptreact = { "prettier" },
-          vue = { "prettier" },
-        }
-      end
+      opts.formatters_by_ft = {
+        javascript = { "biome" },
+        javascriptreact = { "biome" },
+        typescript = { "biome" },
+        typescriptreact = { "biome" },
+      }
+      -- if has_prettier() then
+      --   opts.formatters_by_ft = {
+      --     javascript = { "prettier" },
+      --     javascriptreact = { "prettier" },
+      --     typescript = { "prettier" },
+      --     typescriptreact = { "prettier" },
+      --     vue = { "prettier" },
+      --   }
+      -- end
     end,
   },
 
