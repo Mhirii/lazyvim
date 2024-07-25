@@ -8,7 +8,7 @@ vim.o.guifont = "JetbrainsMono Nerd Font:h11"
 vim.opt.linespace = 0
 vim.g.neovide_scale_factor = 1.0
 vim.g.neovide_theme = "auto"
-vim.g.neovide_transparency = 0.8
+vim.g.neovide_transparency = 0.5
 
 vim.g.neovide_cursor_animate_in_insert_mode = true
 vim.g.neovide_scroll_animation_length = 0.5
