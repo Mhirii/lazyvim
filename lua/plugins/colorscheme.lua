@@ -1,4 +1,7 @@
 local themes = require("user.colors")
+local transparency = function()
+  return not vim.g.neovide
+end
 return {
   {
     "folke/tokyonight.nvim",
@@ -52,7 +55,7 @@ return {
     name = "catppuccin",
     config = function()
       require("catppuccin").setup {
-        transparent_background = true,
+        transparent_background = transparency(),
         color_overrides = {
           mocha = themes.nero2(),
         },
