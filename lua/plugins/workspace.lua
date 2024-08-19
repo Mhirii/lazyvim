@@ -4,7 +4,7 @@ return {
     lazy = true,
     event = "VeryLazy",
     dependencies = {
-      "stevearc/resession.nvim",
+      -- "stevearc/resession.nvim",
     },
     config = function()
       require("workspaces").setup({
