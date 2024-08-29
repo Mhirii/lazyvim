@@ -14,7 +14,7 @@ return {
       mode = { "n", "v" },
     },
     {
-      "<leader>ax",
+      "<leader>aX",
       function()
         return require("CopilotChat").reset()
       end,
@@ -32,7 +32,7 @@ return {
       desc = "Quick Chat (CopilotChat)",
       mode = { "n", "v" },
     },
-    { "<leader>ae", "<CMD>CopilotChatExplain<CR>",  desc = "Explain (CopilotChat)",        mode = { "n", "v" } },
+    { "<leader>ax", "<CMD>CopilotChatExplain<CR>",  desc = "Explain (CopilotChat)",        mode = { "n", "v" } },
     { "<leader>ar", "<CMD>CopilotChatReview<CR>",   desc = "Review (CopilotChat)",         mode = { "n", "v" } },
     { "<leader>af", "<CMD>CopilotChatFix<CR>",      desc = "Fix (CopilotChat)",            mode = { "n", "v" } },
     { "<leader>ao", "<CMD>CopilotChatOptimize<CR>", desc = "Optimize (CopilotChat)",       mode = { "n", "v" } },
