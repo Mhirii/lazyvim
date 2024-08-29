@@ -79,7 +79,8 @@ return {
       }
     end,
     opts = function(_, opts)
-      opts.transparent_background = true
+      opts.transparent_background = transparency()
+      opts.term_colors = true
     end,
   },
 
