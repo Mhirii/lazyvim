@@ -80,4 +80,41 @@ M.nero2 = function()
   }
 end
 
+M.monospace = function()
+  local utils = require("user.utils")
+  local hue = 255
+  local sat = 60
+  local lum = 9
+  local bgs = utils.gen_backgrounds({ hue, sat, lum })
+
+  local crust = bgs.crust
+  local mantle = bgs.mantle
+  local base = bgs.base
+
+  return {
+    green = "#77d5a3",
+    teal = "#41d2ba",
+    sky = "#85cdf1",
+    sapphire = "#71c2ee",
+    blue = "#92a9ff",
+    lavender = "#b895fd",
+    mauve = "#a87ffb",
+    flamingo = "#a2b6ff",
+    pink = "#ee96d6",
+    rosewater = "#ffc6d0",
+    red = "#fd8da3",
+    peach = "#ffa23e",
+    yellow = "#ffd395",
+    crust = crust,
+    mantle = mantle,
+    base = base,
+    surface0 = bgs.surface0,
+    surface1 = bgs.surface1,
+    surface2 = bgs.surface2,
+    overlay0 = bgs.overlay0,
+    overlay1 = bgs.overlay1,
+    overlay2 = bgs.overlay2,
+  }
+end
+
 return M
