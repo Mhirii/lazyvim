@@ -5,14 +5,14 @@ return {
   keys = {
     { "<c-s>",     "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
     { "<leader>a", "",     desc = "+ai",        mode = { "n", "v" } },
-    {
-      "<leader>aa",
-      function()
-        return require("CopilotChat").toggle()
-      end,
-      desc = "Toggle (CopilotChat)",
-      mode = { "n", "v" },
-    },
+    -- {
+    --   "<leader>aa",
+    --   function()
+    --     return require("CopilotChat").toggle()
+    --   end,
+    --   desc = "Toggle (CopilotChat)",
+    --   mode = { "n", "v" },
+    -- },
     {
       "<leader>aX",
       function()
