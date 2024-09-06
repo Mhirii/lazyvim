@@ -1,8 +1,8 @@
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
-  commit = "07af0a9",
-  pin = true,
+  -- commit = "07af0a9",
+  -- pin = true,
   dependencies = {
     "echasnovski/mini.icons",
     "stevearc/dressing.nvim",
