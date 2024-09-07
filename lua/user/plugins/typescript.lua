@@ -51,6 +51,9 @@ local has_prettier = function()
 end
 
 return {
+  { import = "lazyvim.plugins.extras.lang.typescript" },
+  { import = "lazyvim.plugins.extras.lang.tailwind" },
+  { import = "lazyvim.plugins.extras.lang.vue" },
   {
     "jellydn/typecheck.nvim",
     dependencies = { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },

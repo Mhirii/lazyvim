@@ -1,4 +1,5 @@
 return {
+  { import = "lazyvim.plugins.extras.coding.copilot-chat" },
   "CopilotC-Nvim/CopilotChat.nvim",
   branch = "canary",
   cmd = "CopilotChat",
