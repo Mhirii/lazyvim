@@ -51,6 +51,7 @@ local has_prettier = function()
 end
 
 return {
+  { import = "lazyvim.plugins.extras.lang.json" },
   { import = "lazyvim.plugins.extras.lang.typescript" },
   { import = "lazyvim.plugins.extras.lang.tailwind" },
   { import = "lazyvim.plugins.extras.lang.vue" },
@@ -143,8 +144,6 @@ return {
     end,
   },
 
-  { import = "lazyvim.plugins.extras.lang.json" },
-  { import = "lazyvim.plugins.extras.lang.typescript" },
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
