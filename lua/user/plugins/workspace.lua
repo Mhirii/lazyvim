@@ -54,7 +54,7 @@ return {
       telescope.load_extension("workspaces")
     end,
     keys = {
-      { "<leader>w", "<CMD>WorkspacesOpen<CR>", mode = { "n" }, desc = "Workspaces - List" },
+      { "<leader>W", "<CMD>WorkspacesOpen<CR>", mode = { "n" }, desc = "Workspaces - List" },
     },
   },
 }
