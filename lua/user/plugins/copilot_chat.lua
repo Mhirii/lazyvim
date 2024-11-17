@@ -89,6 +89,8 @@ return {
         },
       }
 
+      opts.model = 'claude-3.5-sonnet'
+
 
       chat.setup(opts)
     end,
