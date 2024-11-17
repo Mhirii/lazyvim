@@ -55,43 +55,43 @@ return {
   { import = "lazyvim.plugins.extras.lang.typescript" },
   { import = "lazyvim.plugins.extras.lang.tailwind" },
   { import = "lazyvim.plugins.extras.lang.vue" },
-  {
-    "jellydn/typecheck.nvim",
-    dependencies = { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
-    ft = { "javascript", "javascriptreact", "json", "jsonc", "typescript", "typescriptreact" },
-    opts = {
-      debug = true,
-      mode = "trouble",
-    },
-    keys = {
-      {
-        "<leader>ck",
-        "<cmd>Typecheck<cr>",
-        desc = "Run Type Check",
-      },
-    },
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      {
-        "vuki656/package-info.nvim",
-        event = { "BufRead package.json" },
-        opts = {},
-      },
-      {
-        "David-Kunz/cmp-npm",
-        event = { "BufRead package.json" },
-        opts = {},
-      },
-    },
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
-        { name = "npm", keyword_length = 3 },
-      }))
-    end,
-  },
+  -- {
+  --   "jellydn/typecheck.nvim",
+  --   dependencies = { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
+  --   ft = { "javascript", "javascriptreact", "json", "jsonc", "typescript", "typescriptreact" },
+  --   opts = {
+  --     debug = true,
+  --     mode = "trouble",
+  --   },
+  --   keys = {
+  --     {
+  --       "<leader>ck",
+  --       "<cmd>Typecheck<cr>",
+  --       desc = "Run Type Check",
+  --     },
+  --   },
+  -- },
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   dependencies = {
+  --     {
+  --       "vuki656/package-info.nvim",
+  --       event = { "BufRead package.json" },
+  --       opts = {},
+  --     },
+  --     {
+  --       "David-Kunz/cmp-npm",
+  --       event = { "BufRead package.json" },
+  --       opts = {},
+  --     },
+  --   },
+  --   opts = function(_, opts)
+  --     local cmp = require("cmp")
+  --     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
+  --       { name = "npm", keyword_length = 3 },
+  --     }))
+  --   end,
+  -- },
 
   {
     "nvim-treesitter/nvim-treesitter",
@@ -108,20 +108,20 @@ return {
       vim.list_extend(opts.ensure_installed, { "css-lsp", "html-lsp", "biome" })
     end,
   },
-  {
-    "mfussenegger/nvim-lint",
-    enabled = true,
-    opts = function(_, opts)
-      if has_eslint() then
-        opts.linters_by_ft = {
-          javascript = { "eslint" },
-          javascriptreact = { "eslint" },
-          typescript = { "eslint" },
-          typescriptreact = { "eslint" },
-        }
-      end
-    end,
-  },
+  -- {
+  --   "mfussenegger/nvim-lint",
+  --   enabled = true,
+  --   opts = function(_, opts)
+  --     if has_eslint() then
+  --       opts.linters_by_ft = {
+  --         javascript = { "eslint" },
+  --         javascriptreact = { "eslint" },
+  --         typescript = { "eslint" },
+  --         typescriptreact = { "eslint" },
+  --       }
+  --     end
+  --   end,
+  -- },
 
   {
     "stevearc/conform.nvim",
@@ -144,11 +144,11 @@ return {
     end,
   },
 
-  {
-    "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      opts.servers.vtsls.settings.vtsls.enableMoveToFileCodeAction = false
-      opts.servers.vtsls.settings.typescript.inlayHints = false
-    end,
-  }
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = function(_, opts)
+  --     opts.servers.vtsls.settings.vtsls.enableMoveToFileCodeAction = false
+  --     opts.servers.vtsls.settings.typescript.inlayHints = false
+  --   end,
+  -- }
 }
