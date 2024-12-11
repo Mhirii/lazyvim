@@ -1,3 +1,7 @@
+if not require("user.utils").is_personal() then
+	return {}
+end
+
 return {
 	{ import = "lazyvim.plugins.extras.lang.go" },
 	{
