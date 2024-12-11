@@ -2,6 +2,10 @@ if not require("user.utils").is_personal() then
 	return {}
 end
 
+if true then
+	return {}
+end
+
 return {
 	{ import = "lazyvim.plugins.extras.coding.copilot-chat" },
 	{
