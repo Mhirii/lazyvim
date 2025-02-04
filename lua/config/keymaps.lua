@@ -130,3 +130,13 @@ map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 map({ "n", "v" }, "<leader>lf", function()
 	LazyVim.format({ force = true })
 end, { desc = "Format" })
+
+
+-- lazygit
+if vim.fn.executable("lazygit") == 1 then
+	map("n", "<leader>lg", function() Snacks.lazygit({ cwd = LazyVim.root.git() }) end, { desc = "Lazygit (Root Dir)" })
+	map("n", "<leader>lG", function() Snacks.lazygit() end, { desc = "Lazygit (cwd)" })
+	map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, { desc = "Git Current File History" })
+	map("n", "<leader>gl", function() Snacks.picker.git_log({ cwd = LazyVim.root.git() }) end, { desc = "Git Log" })
+	map("n", "<leader>gL", function() Snacks.picker.git_log() end, { desc = "Git Log (cwd)" })
+end
