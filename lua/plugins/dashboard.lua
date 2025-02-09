@@ -101,7 +101,7 @@ return {
 						{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
 						{ icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
 						{ icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-						-- { icon = " ", key = "s", desc = "Restore Session", section = ":lua require('persistence').load()" },
+						{ icon = " ", key = "s", desc = "Restore Session", action = ":lua require('persistence').load()" },
 						{ icon = " ", key = "w", desc = "Workspaces", action = ":WorkspacesOpen" },
 						{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 					},
