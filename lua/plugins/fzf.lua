@@ -1,6 +1,22 @@
 return {
 	"ibhagwan/fzf-lua",
-	-- config = function(_, opts)
+	opts = function(_, opts)
+		local fzf = require("fzf-lua")
+		local actions = fzf.actions
+		opts.files = {
+			cwd_prompt = false,
+			actions = {
+				["alt-I"] = { actions.toggle_ignore },
+				["alt-h"] = { actions.toggle_hidden },
+			},
+		}
+		opts.grep = {
+			actions = {
+				["alt-I"] = { actions.toggle_ignore },
+				["alt-h"] = { actions.toggle_hidden },
+			},
+		}
+	end,
 	-- opts.keys = {
 	keys = {
 		-- { "<c-j>", "<c-j>", ft = "fzf", mode = "t", nowait = true },
